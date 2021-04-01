@@ -1,8 +1,12 @@
 # Ignore everything
 *
 
-# Put these in the repo
+# Repo managment
 !.gitignore
+!LICENSE
+!README.md
+
+# The scripts
 !ifig.m
 !persForLoop.m
 !persForLoopSplitSaves.m
