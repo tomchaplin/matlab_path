@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# Put these in the repo
+!.gitignore
+!ifig.m
+!persForLoop.m
+!persForLoopSplitSaves.m
