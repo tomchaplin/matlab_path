@@ -10,3 +10,4 @@
 !ifig.m
 !persForLoop.m
 !persForLoopSplitSaves.m
+!read_graph_with_attrs.m
