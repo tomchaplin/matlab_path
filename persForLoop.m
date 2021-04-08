@@ -6,7 +6,7 @@ function pfl_output = persForLoop( varargin )
 		num_iterators = nargin - 2;
 	else
 		filename = '__pfl_state.mat';
-		f = varargin{nargin - 1};
+		f = varargin{nargin};
 		num_iterators = nargin - 1;
 	end
 	iterator_sizes = cellfun(@(x) length(x) , varargin(1:num_iterators));

@@ -8,7 +8,7 @@ function pfl_output = persForLoopSplitSaves( varargin )
 	else
 		identifier = '__pfl_state';
 		filename = append(identifier, '.mat');
-		f = varargin{nargin - 1};
+		f = varargin{nargin};
 		num_iterators = nargin - 1;
 	end
 	iterator_sizes = cellfun(@(x) length(x) , varargin(1:num_iterators));
