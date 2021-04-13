@@ -5,7 +5,7 @@ function G = read_graph_with_attrs(filename,varargin)
 
 	% Read atribute file
 	attr_filename = sprintf('%s.attrs.csv', filename);
-	disp(attr_filename)
+	%disp(attr_filename)
 	attrT = readtable(attr_filename);
 
 	% Init graph
@@ -18,10 +18,10 @@ function G = read_graph_with_attrs(filename,varargin)
 	G = addnode(G, N);
 
 	% Add atributes
-	num_attrs = length(attrT.Properties.VariableNames)
+	num_attrs = length(attrT.Properties.VariableNames);
 	for i=2:num_attrs
-		attr_name = attrT.Properties.VariableNames{i}
-		G.Nodes.(attr_name) = attrT.(attr_name)
+		attr_name = attrT.Properties.VariableNames{i};
+		G.Nodes.(attr_name) = attrT.(attr_name);
 	end
 
 	% Add edges
