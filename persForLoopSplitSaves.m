@@ -59,7 +59,6 @@ function pfl_output = persForLoopSplitSaves( varargin )
     fprintf('Deleting save files, please do not abort!\n')
     % Clean up split saves
     pfl_workingOn = ones(1, num_iterators);
-    pfl_output = cell(iterator_sizes);
     while ~isa(pfl_workingOn,'char')
         % Delete save file
         thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
