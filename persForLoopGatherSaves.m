@@ -20,22 +20,43 @@ function pfl_output = persForLoopGatherSaves( varargin )
     pfl_workingOn = ones(1, num_iterators);
     pfl_output = cell(iterator_sizes);
     while ~isa(pfl_workingOn,'char')
-        workStr = join(split(num2str(pfl_workingOn)),'_');
-        workStr = workStr{1};
-        thisWorksFilename = append(identifier,'__',workStr,'.mat');
+        thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
         load(thisWorksFilename,'outputOfWork');
         % Store the work
-        idx_str = sprintf('%d,', pfl_workingOn);
-        idx_str = idx_str(1:end-1);
-        storageSnippet = append('pfl_output{', idx_str, '} = outputOfWork;');
+        storageSnippet = getStorageSnippet(pfl_workingOn);
         eval(storageSnippet);
+        % Get next work
+        pfl_workingOn = getNextWork(pfl_workingOn, iterator_sizes);
+    end
+    fprintf('Deleting save files, please do not abort!\n')
+    % Clean up split saves
+    pfl_workingOn = ones(1, num_iterators);
+    pfl_output = cell(iterator_sizes);
+    while ~isa(pfl_workingOn,'char')
         % Delete save file
-        % delete(thisWorksFilename);
+        thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
+        delete(thisWorksFilename);
         % Get next work
         pfl_workingOn = getNextWork(pfl_workingOn, iterator_sizes);
     end
     % Clean up persistence file
     delete(filename)
+end
+
+function workStr = getWorkStr(workingOn)
+    workStr = join(split(num2str(workingOn)),'_');
+    workStr = workStr{1};
+end
+
+function worksFilename = getWorkFilename(workingOn, identifier)
+    workStr = getWorkStr(workingOn);
+    worksFilename = append(identifier,'__',workStr,'.mat');
+end
+
+function snippet = getStorageSnippet(workingOn)
+    idx_str = sprintf('%d,', workingOn);
+    idx_str = idx_str(1:end-1);
+    snippet = append('output{', idx_str, '} = outputOfWork;');
 end
 
 function workingOn = getNextWork(workingOn, iterator_sizes)

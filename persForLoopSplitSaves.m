@@ -48,7 +48,7 @@ function pfl_output = persForLoopSplitSaves( varargin )
     pfl_workingOn = ones(1, num_iterators);
     pfl_output = cell(iterator_sizes);
     while ~isa(pfl_workingOn,'char')
-    thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
+        thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
         load(thisWorksFilename,'outputOfWork');
         % Store the work
         storageSnippet = getStorageSnippet(pfl_workingOn);
@@ -61,9 +61,12 @@ function pfl_output = persForLoopSplitSaves( varargin )
     pfl_workingOn = ones(1, num_iterators);
     pfl_output = cell(iterator_sizes);
     while ~isa(pfl_workingOn,'char')
+        % Delete save file
         thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
-            delete(thisWorksFilename);
-      end
+        delete(thisWorksFilename);
+        % Get next work
+        pfl_workingOn = getNextWork(pfl_workingOn, iterator_sizes);
+    end
     % Clean up persistence file
     delete(filename)
 end
