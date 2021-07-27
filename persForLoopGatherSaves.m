@@ -56,7 +56,7 @@ end
 function snippet = getStorageSnippet(workingOn)
     idx_str = sprintf('%d,', workingOn);
     idx_str = idx_str(1:end-1);
-    snippet = append('output{', idx_str, '} = outputOfWork;');
+    snippet = append('pfl_output{', idx_str, '} = outputOfWork;');
 end
 
 function workingOn = getNextWork(workingOn, iterator_sizes)
