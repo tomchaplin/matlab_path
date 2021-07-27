@@ -32,6 +32,7 @@ function pfl_output = persForLoop( varargin )
         workSnippet = getWorkSnippet(num_iterators, pfl_workingOn);
         outputOfWork = eval(workSnippet);
         % Store the work
+        idxStr = getIdxStr(pfl_workingOn);
         storageSnippet = getStorageSnippet(pfl_workingOn);
         eval(storageSnippet);
         % Get next work
@@ -41,7 +42,6 @@ function pfl_output = persForLoop( varargin )
         % Save work and progress to file
         save(filename);
         % Report
-        idxStr = getIdxStr(pfl_workingOn);
         fprintf('Finished %s\n', idxStr)
     end
     % Clean up persistence file

@@ -35,12 +35,12 @@ function pfl_output = persForLoopSplitSaves( varargin )
         % Save work to file
         thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
         save(thisWorksFilename,'outputOfWork');
+        workStr = getWorkStr(pfl_workingOn);
         % Get next work and save progress
         pfl_workingOn = getNextWork(pfl_workingOn, iterator_sizes);
         pfl_rng = rng;
         save(filename, 'pfl_workingOn', 'pfl_rng');
         % Report
-        workStr = getWorkStr(pfl_workingOn);
         fprintf('Finished %s\n', workStr)
     end
     fprintf('Rejoining save files, please do not abort!\n')
