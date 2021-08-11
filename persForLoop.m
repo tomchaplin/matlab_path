@@ -58,7 +58,7 @@ end
 
 function idxStr = getIdxStr(workingOn)
     idxStr = sprintf('%d,', workingOn);
-    idxStr = idx_str(1:end-1);
+    idxStr = idxStr(1:end-1);
 end
 
 
