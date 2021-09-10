@@ -28,18 +28,18 @@ function pfl_output = persForLoopGatherSaves( varargin )
         % Get next work
         pfl_workingOn = getNextWork(pfl_workingOn, iterator_sizes);
     end
-    fprintf('Deleting save files, please do not abort!\n')
-    % Clean up split saves
-    pfl_workingOn = ones(1, num_iterators);
-    while ~isa(pfl_workingOn,'char')
-        % Delete save file
-        thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
-        delete(thisWorksFilename);
-        % Get next work
-        pfl_workingOn = getNextWork(pfl_workingOn, iterator_sizes);
-    end
-    % Clean up persistence file
-    delete(filename)
+    % fprintf('Deleting save files, please do not abort!\n')
+    % % Clean up split saves
+    % pfl_workingOn = ones(1, num_iterators);
+    % while ~isa(pfl_workingOn,'char')
+    %     % Delete save file
+    %     thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
+    %     delete(thisWorksFilename);
+    %     % Get next work
+    %     pfl_workingOn = getNextWork(pfl_workingOn, iterator_sizes);
+    % end
+    % % Clean up persistence file
+    % delete(filename)
 end
 
 function workStr = getWorkStr(workingOn)
