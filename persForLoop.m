@@ -22,7 +22,11 @@ function pfl_output = persForLoop( varargin )
         % We prepend these with pfl_
         % So that they are note affected by workspace
         % Not sure if necessary?
-        pfl_output = cell(iterator_sizes);
+        if num_iterators == 1
+            pfl_output = cell(1, iterator_sizes);
+        else
+            pfl_output = cell(iterator_sizes);
+        end
         pfl_workingOn = ones(1, num_iterators);
         pfl_rng = rng;
     end

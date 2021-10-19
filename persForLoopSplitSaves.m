@@ -46,7 +46,11 @@ function pfl_output = persForLoopSplitSaves( varargin )
     fprintf('Rejoining save files, please do not abort!\n')
     % Rejoin save files
     pfl_workingOn = ones(1, num_iterators);
-    pfl_output = cell(iterator_sizes);
+    if num_iterators == 1
+        pfl_output = cell(1, iterator_sizes);
+    else
+        pfl_output = cell(iterator_sizes);
+    end
     while ~isa(pfl_workingOn,'char')
         thisWorksFilename = getWorkFilename(pfl_workingOn, identifier);
         load(thisWorksFilename,'outputOfWork');
